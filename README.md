@@ -4,13 +4,13 @@ Submitted by: **Fiyinfoluwa Afolayan**
 
 **BeReal-Clone** is an app that ... [TODO] 
 
-Time spent: **X** hours spent in total
+Time spent: **1** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [ ] Users see an app icon in the home screen and a styled launch screen.
+- [/] Users see an app icon in the home screen and a styled launch screen.
 - [ ] User can register a new account
 - [ ] User can log in with newly created account
 - [ ] App has a feed of posts when user logs in
