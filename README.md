@@ -1,8 +1,8 @@
-# Project 2 - *Name of App Here*
+# Project 2 - *BeReal-Clone*
 
-Submitted by: **Your Name Here**
+Submitted by: **Fiyinfoluwa Afolayan**
 
-**Name of your app** is an app that ... [TODO] 
+**BeReal-Clone** is an app that ... [TODO] 
 
 Time spent: **X** hours spent in total
 
@@ -41,7 +41,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2025] [Fiyinfoluwa Afolayan]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
