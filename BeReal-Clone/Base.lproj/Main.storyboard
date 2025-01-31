@@ -157,9 +157,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <action selector="onLogOutTapped:" destination="aYh-lG-THy" eventType="touchUpInside" id="04C-5R-Zf1"/>
+                                </connections>
                             </button>
+                            <connections>
+                                <action selector="onLogOutTapped:" destination="aYh-lG-THy" id="xAE-nh-b90"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="4Do-SG-652" id="QIb-GR-K89"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0x-N0-JbF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
