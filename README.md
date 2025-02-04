@@ -2,15 +2,15 @@
 
 Submitted by: **Fiyinfoluwa Afolayan**
 
-**BeReal-Clone** is an app that ... [TODO] 
+**BeReal-Clone** is an app that allows users to authentically share moments by uploading photos to a social feed. 
 
-Time spent: **2** hours spent in total
+Time spent: **5** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [/] Users see an app icon in the home screen and a styled launch screen.
+- [x] Users see an app icon in the home screen and a styled launch screen.
 - [x] User can register a new account
 - [x] User can log in with newly created account
 - [x] App has a feed of posts when user logs in
