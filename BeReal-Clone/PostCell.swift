@@ -25,6 +25,8 @@ class PostCell: UITableViewCell {
         // Username
         if let user = post.user {
             usernameLabel.text = user.username
+        } else {
+            usernameLabel.text = "Sam Wasabi"
         }
 
         // Image

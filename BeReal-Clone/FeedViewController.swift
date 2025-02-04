@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ParseSwift
 
 class FeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -57,6 +58,14 @@ class FeedViewController: UIViewController {
             case .success(let posts):
                 // Update local posts property with fetched posts
                 self?.posts = posts
+                // 🔍 Debugging - Print usernames for all posts
+                for post in posts {
+                    if let user = post.user {
+                        print("✅ Post by: \(user.username ?? "No username")")
+                    } else {
+                        print("❌ post.user is nil for post ID: \(post.objectId ?? "No ID")")
+                    }
+                }
             case .failure(let error):
                 self?.showAlert(description: error.localizedDescription)
             }
