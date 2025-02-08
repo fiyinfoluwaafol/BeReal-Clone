@@ -2,9 +2,9 @@
 
 Submitted by: **Fiyinfoluwa Afolayan**
 
-**Name of your app** is an app that introduces ... [TODO] 
+**BeReal-Clone** is an app that introduces ... [TODO] 
 
-Time spent: **1** hours spent in total
+Time spent: **2** hours spent in total
 
 ## Required Features
 
@@ -12,10 +12,10 @@ The following **required** functionality is completed:
 
 - [x] User can launch camera to take photo instead of photo library
   - [ ] Users without iPhones to demo this feature can manually add unique photos to their simulator's Photos app
-- [ ] Users are not able to see other users’ photos until they upload their own.
+- [x] Users are not able to see other users’ photos until they upload their own.
 - [ ] Users can intereact with posts via comments, comments will have user data such as username and name
 - [ ] Posts have a time and location attached to them
-- [ ] Users are not able to see other photos until they post their own (within 24 hours)    
+- [x] Users are not able to see other photos until they post their own (within 24 hours)    
  
 The following **optional** features are implemented:
 
