@@ -20,5 +20,6 @@ struct Post: ParseObject {
     var caption: String?
     var user: User?
     var imageFile: ParseFile?
+    var photoTimestamp: Date?
     var imageLocation: ParseGeoPoint?
 }

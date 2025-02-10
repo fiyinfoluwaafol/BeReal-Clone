@@ -8,17 +8,23 @@
 import UIKit
 import PhotosUI
 import ParseSwift
+import CoreLocation
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var captionTextField: UITextField!
     @IBOutlet weak var previewImageView: UIImageView!
     
     private var pickedImage: UIImage?
     
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation?
+    
+    var capturedTime: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupLocationManager()
         // Do any additional setup after loading the view.
     }
     
@@ -52,7 +58,13 @@ class PostViewController: UIViewController {
     @IBAction func onPostTapped(_ sender: UIButton) {
         // Dismiss Keyboard
         view.endEditing(true)
-
+        
+        if currentLocation == nil {
+                print("❌ Location not available yet, retrying...")
+                showAlert(description: "Waiting for location data. Try again in a moment.")
+                return
+            }
+        
         // TODO: Pt 1 - Create and save Post
         // Unwrap optional pickedImage
         guard let image = pickedImage,
@@ -60,7 +72,11 @@ class PostViewController: UIViewController {
               let imageData = image.jpegData(compressionQuality: 0.1) else {
             return
         }
-
+        
+        // Captures time photo was taken
+        capturedTime = Date()
+        print("✅ Photo taken at: \(capturedTime!)")
+        
         // Create a Parse File by providing a name and passing in the image data
         let imageFile = ParseFile(name: "image.jpg", data: imageData)
 
@@ -70,6 +86,15 @@ class PostViewController: UIViewController {
         // Set properties
         post.imageFile = imageFile
         post.caption = captionTextField.text
+        post.photoTimestamp = capturedTime ?? Date()  // Store captured time
+
+        if let location = currentLocation {
+            print("✅ Saving Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+            post.imageLocation = try? ParseGeoPoint(latitude: location.coordinate.latitude,
+                                        longitude: location.coordinate.longitude)
+        } else {
+            print("❌ No Location Data Available at Time of Post")
+        }
 
         // Set the user as the current user
         post.user = User.current
@@ -122,6 +147,20 @@ class PostViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    func setupLocationManager() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()  // Start fetching location
+        }
+
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            guard let location = locations.last else { return }
+            self.currentLocation = location
+            print("✅ Captured Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+//            locationManager.stopUpdatingLocation()  // Stop after getting location
+        }
+    
 }
 
 extension PostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -143,3 +182,4 @@ extension PostViewController: UIImagePickerControllerDelegate, UINavigationContr
             pickedImage = image
     }
 }
+
