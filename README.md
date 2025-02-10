@@ -4,7 +4,7 @@ Submitted by: **Fiyinfoluwa Afolayan**
 
 **BeReal-Clone** is an app that introduces ... [TODO] 
 
-Time spent: **2** hours spent in total
+Time spent: **4** hours spent in total
 
 ## Required Features
 
