@@ -8,6 +8,8 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import CoreLocation
+import ParseSwift
 
 class PostCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
@@ -49,6 +51,17 @@ class PostCell: UITableViewCell {
 
         // Caption
         captionLabel.text = post.caption
+        
+        // ✅ Convert GPS coordinates to location name
+            if let location = post.imageLocation {
+                getAddressFromLocation(location) { locationName in
+                    DispatchQueue.main.async {
+                        self.locationLabel.text = locationName ?? "Location unknown"
+                    }
+                }
+            } else {
+                locationLabel.text = "Location unknown"
+            }
 
         // Date
         if let date = post.createdAt {
@@ -93,6 +106,22 @@ class PostCell: UITableViewCell {
         postImageView.clipsToBounds = true
         usernameInitialsLabel.layer.cornerRadius = usernameInitialsLabel.frame.size.width / 2
         usernameInitialsLabel.clipsToBounds = true
+    }
+    
+    func getAddressFromLocation(_ location: ParseGeoPoint, completion: @escaping (String?) -> Void) {
+        let geocoder = CLGeocoder()
+        let clLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+
+        geocoder.reverseGeocodeLocation(clLocation) { placemarks, error in
+            if let error = error {
+                print("❌ Error getting location name: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+            let place = placemarks?.first
+            let locationString = "\(place?.locality ?? "Unknown"), \(place?.country ?? "Unknown")"
+            completion(locationString)
+        }
     }
 
 }

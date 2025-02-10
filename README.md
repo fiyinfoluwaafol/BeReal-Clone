@@ -14,7 +14,7 @@ The following **required** functionality is completed:
   - [ ] Users without iPhones to demo this feature can manually add unique photos to their simulator's Photos app
 - [x] Users are not able to see other users’ photos until they upload their own.
 - [ ] Users can intereact with posts via comments, comments will have user data such as username and name
-- [ ] Posts have a time and location attached to them
+- [x] Posts have a time and location attached to them
 - [x] Users are not able to see other photos until they post their own (within 24 hours)    
  
 The following **optional** features are implemented:
