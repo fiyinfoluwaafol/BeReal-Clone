@@ -16,6 +16,10 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        // ✅ Add a tap gesture to dismiss the keyboard when tapping anywhere on the screen
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false  // ✅ Ensures buttons and other UI elements still work
+        view.addGestureRecognizer(tapGesture)
     }
 
     @IBAction func onSignUpTapped(_ sender: Any) {
@@ -78,6 +82,9 @@ class AuthViewController: UIViewController {
         }
     }
     
+    @objc func dismissKeyboard() {
+        view.endEditing(true)  // ✅ Hides the keyboard
+    }
     
     private func showAlert(description: String?) {
         let alertController = UIAlertController(title: "Unable to Complete Action", message: description ?? "Unknown error", preferredStyle: .alert)
