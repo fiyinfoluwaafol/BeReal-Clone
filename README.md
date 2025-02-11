@@ -2,7 +2,7 @@
 
 Submitted by: **Fiyinfoluwa Afolayan**
 
-**BeReal-Clone** is an app that introduces ... [TODO] 
+**BeReal-Clone** is an app that allows users to authentically share moments by uploading photos to a social feed. 
 
 Time spent: **7** hours spent in total
 
@@ -29,11 +29,13 @@ The following **additional** features are implemented:
 
 Here is a reminder on how to embed Loom videos on GitHub. Feel free to remove this reminder once you upload your README. 
 
-[Guide]](https://www.youtube.com/watch?v=GA92eKlYio4) .
 
+![Project3](https://github.com/user-attachments/assets/4bd9b6a8-ba9f-4e4f-95a9-c8e8fe60aacb)
+
+P.S. Please wait till end of GIF to see notification stretch feature implementation
 ## Notes
 
-Describe any challenges encountered while building the app.
+Ran into some issues with Parse just not fetching Posts data, so I fixed that by cleaning my build folder
 
 ## License
 
