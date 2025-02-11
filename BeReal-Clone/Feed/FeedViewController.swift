@@ -41,19 +41,53 @@ class FeedViewController: UIViewController {
         queryPosts()
     }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "showCommentsSegue" {
+//            guard let commentsVC = segue.destination as? CommentsViewController,
+//                  let cell = sender as? PostCell,
+//                  let indexPath = tableView.indexPath(for: cell) else {
+//                print("❌ Error: Unable to get selected post!")
+//                return
+//            }
+//
+//            commentsVC.post = posts[indexPath.row] // Pass the post to fetch its comments
+//        }
+//    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showCommentsSegue" {
-            guard let commentsVC = segue.destination as? CommentsViewController,
-                  let cell = sender as? PostCell,
-                  let indexPath = tableView.indexPath(for: cell) else {
-                print("❌ Error: Unable to get selected post!")
+            print("🚀 Preparing segue to CommentsViewController")
+            
+            // Ensure the destination is the CommentsViewController
+            guard let commentsVC = segue.destination as? CommentsViewController else {
+                print("❌ Error: segue.destination is nil or not a CommentsViewController")
                 return
             }
 
-            commentsVC.post = posts[indexPath.row] // Pass the post to fetch its comments
+            // Get the button that triggered the segue
+            guard let button = sender as? UIButton else {
+                print("❌ Error: sender is not a UIButton")
+                return
+            }
+
+            // Find the PostCell that contains the button
+            guard let cell = button.superview?.superview as? PostCell else {
+                print("❌ Error: Could not find PostCell from button")
+                return
+            }
+
+            // Get the index path of the cell
+            guard let indexPath = tableView.indexPath(for: cell) else {
+                print("❌ Error: Could not get indexPath for PostCell")
+                return
+            }
+
+            let selectedPost = posts[indexPath.row]
+            commentsVC.post = selectedPost
+            print("✅ Successfully passing Post with ID: \(selectedPost.objectId ?? "No ID")")
         }
     }
-    
+
     func requestNotificationPermission() {
         let center = UNUserNotificationCenter.current()
         
@@ -79,8 +113,8 @@ class FeedViewController: UIViewController {
 
         // Schedule notification for a fixed time (e.g., 8 PM)
         var dateComponents = DateComponents()
-        dateComponents.hour = 23  // Set hour (24-hour format)
-        dateComponents.minute = 35  // Set minute
+        dateComponents.hour = 7  // Set hour (24-hour format)
+        dateComponents.minute = 37  // Set minute
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
 

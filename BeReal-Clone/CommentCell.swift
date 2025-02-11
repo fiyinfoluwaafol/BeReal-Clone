@@ -12,7 +12,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
 
     func configure(with comment: Comment) {
-        usernameLabel.text = comment.user?.username ?? "Unknown User"
+        usernameLabel.text = comment.user?.username ?? "Sam Wasabi"
         commentLabel.text = comment.text
     }
 }
