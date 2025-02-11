@@ -22,4 +22,5 @@ struct Post: ParseObject {
     var imageFile: ParseFile?
     var photoTimestamp: Date?
     var imageLocation: ParseGeoPoint?
+    var comments: [Comment]? 
 }

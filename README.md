@@ -4,7 +4,7 @@ Submitted by: **Fiyinfoluwa Afolayan**
 
 **BeReal-Clone** is an app that introduces ... [TODO] 
 
-Time spent: **4** hours spent in total
+Time spent: **7** hours spent in total
 
 ## Required Features
 
@@ -19,7 +19,7 @@ The following **required** functionality is completed:
  
 The following **optional** features are implemented:
 
-- [ ] User receive notifcation when it is time to post
+- [x] User receive notifcation when it is time to post
 
 The following **additional** features are implemented:
 

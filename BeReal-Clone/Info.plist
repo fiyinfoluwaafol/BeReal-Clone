@@ -6,6 +6,9 @@
 	<string>This app needs access to your location to tag your posts with your exact location.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to your camera to capture those beautiful moments in real time</string>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>This app uses notifications to remind you to post.
+This app uses notifications to remind you to post.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

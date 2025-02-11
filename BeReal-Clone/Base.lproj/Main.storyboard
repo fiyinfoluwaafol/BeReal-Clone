@@ -66,6 +66,61 @@
             </objects>
             <point key="canvasLocation" x="135.1145038167939" y="4.9295774647887329"/>
         </scene>
+        <!--Comments View Controller-->
+        <scene sceneID="0sv-QD-jvF">
+            <objects>
+                <viewController storyboardIdentifier="CommentsViewController" id="3Jd-F7-36a" customClass="CommentsViewController" customModule="BeReal_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cue-gH-Sds">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5wy-ER-6I9">
+                                <rect key="frame" x="0.0" y="-11" width="393" height="853"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="82" id="y6S-DI-zjc" customClass="CommentCell" customModule="BeReal_Clone" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="82"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y6S-DI-zjc" id="fvR-gP-yh2">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="82"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oau-l8-tRx">
+                                                    <rect key="frame" x="8" y="20" width="82" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Actual Comment from Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMn-Nk-zXU">
+                                                    <rect key="frame" x="98" y="19" width="288" height="52"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentLabel" destination="aMn-Nk-zXU" id="w8l-9Y-D2N"/>
+                                            <outlet property="usernameLabel" destination="Oau-l8-tRx" id="GaI-fA-h84"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="U7s-0p-xej"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="5wy-ER-6I9" id="d2R-Mt-MrS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MTO-II-4iu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052.6717557251909" y="4.9295774647887329"/>
+        </scene>
         <!--BeReal.-->
         <scene sceneID="AFa-tu-p1v">
             <objects>
@@ -95,11 +150,11 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="425" id="ebU-s1-D8A" customClass="PostCell" customModule="BeReal_Clone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="94" width="393" height="425"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="507" id="ebU-s1-D8A" customClass="PostCell" customModule="BeReal_Clone" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="94" width="393" height="507"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ebU-s1-D8A" id="siC-u7-Wly">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="425"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="507"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pr3-Za-nNh">
@@ -164,13 +219,42 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Post a comment..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W3X-wn-28F">
+                                                    <rect key="frame" x="20" y="427" width="318" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uta-d7-BoI">
+                                                    <rect key="frame" x="346" y="424" width="39" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" image="paperplane.fill" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="onPostCommentTapped:" destination="ebU-s1-D8A" eventType="touchUpInside" id="Ewz-jD-5KX"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkR-HO-F93">
+                                                    <rect key="frame" x="8" y="469" width="172" height="27"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="View all comments"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="View all comments">
+                                                        <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <segue destination="3Jd-F7-36a" kind="presentation" identifier="showCommentsSegue" id="lzG-DY-L8L"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="blurView" destination="3Un-6P-mBZ" id="aHa-Xe-ynv"/>
                                             <outlet property="captionLabel" destination="Pr3-Za-nNh" id="O1M-gO-lW3"/>
+                                            <outlet property="commentTextField" destination="W3X-wn-28F" id="F01-iv-kOI"/>
                                             <outlet property="dateTimeLabel" destination="54u-o6-JT4" id="adu-5g-13I"/>
                                             <outlet property="locationLabel" destination="yDV-rv-sv3" id="zcL-Ok-7im"/>
+                                            <outlet property="postCommentButton" destination="uta-d7-BoI" id="vpw-If-Fxi"/>
                                             <outlet property="postImageView" destination="RdT-y2-52L" id="E8I-DC-TXB"/>
                                             <outlet property="usernameInitialsLabel" destination="raG-vL-B3a" id="Wi0-vb-7pz"/>
                                             <outlet property="usernameLabel" destination="WeV-Po-0lU" id="JyD-f5-1G3"/>
@@ -279,6 +363,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="paperplane.fill" catalog="system" width="128" height="119"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

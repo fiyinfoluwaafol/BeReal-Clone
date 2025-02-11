@@ -7,6 +7,7 @@
 
 import UIKit
 import ParseSwift
+import UserNotifications
 
 class FeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -27,14 +28,71 @@ class FeedViewController: UIViewController {
         tableView.dataSource = self
         tableView.allowsSelection = false
         
-        tableView.rowHeight = 450
+        tableView.rowHeight = 500
 //        tableView.estimatedRowHeight = 200
+        
+        requestNotificationPermission()
+        schedulePostReminder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         queryPosts()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCommentsSegue" {
+            guard let commentsVC = segue.destination as? CommentsViewController,
+                  let cell = sender as? PostCell,
+                  let indexPath = tableView.indexPath(for: cell) else {
+                print("❌ Error: Unable to get selected post!")
+                return
+            }
+
+            commentsVC.post = posts[indexPath.row] // Pass the post to fetch its comments
+        }
+    }
+    
+    func requestNotificationPermission() {
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if granted {
+                print("✅ Notification permission granted!")
+            } else {
+                print("❌ Notification permission denied.")
+            }
+        }
+    }
+    
+    func schedulePostReminder() {
+        let center = UNUserNotificationCenter.current()
+
+        // Remove existing notifications to prevent duplicates
+        center.removeAllPendingNotificationRequests()
+
+        let content = UNMutableNotificationContent()
+        content.title = "Time to BeReal! 📸"
+        content.body = "Post your daily moment before time runs out!"
+        content.sound = .default
+
+        // Schedule notification for a fixed time (e.g., 8 PM)
+        var dateComponents = DateComponents()
+        dateComponents.hour = 23  // Set hour (24-hour format)
+        dateComponents.minute = 35  // Set minute
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+
+        let request = UNNotificationRequest(identifier: "dailyPostReminder", content: content, trigger: trigger)
+
+        center.add(request) { error in
+            if let error = error {
+                print("❌ Error scheduling notification: \(error.localizedDescription)")
+            } else {
+                print("✅ Reminder notification scheduled!")
+            }
+        }
     }
     
     @IBAction func onLogOutTapped(_ sender: Any) {
@@ -45,6 +103,9 @@ class FeedViewController: UIViewController {
     private func queryPosts() {
         // TODO: Pt 1 - Query Posts
         let yesterdayDate = Calendar.current.date(byAdding: .day, value: (-1), to: Date())!
+        
+//        let isoDateFormatter = ISO8601DateFormatter()
+//        let formattedDate = isoDateFormatter.string(from: yesterdayDate)
 // https://github.com/parse-community/Parse-Swift/blob/3d4bb13acd7496a49b259e541928ad493219d363/ParseSwift.playground/Pages/2%20-%20Finding%20Objects.xcplaygroundpage/Contents.swift#L66
         // 1. Create a query to fetch Posts
         // 2. Any properties that are Parse objects are stored by reference in Parse DB and as such need to explicitly use `include_:)` to be included in query results.
@@ -65,6 +126,7 @@ class FeedViewController: UIViewController {
                 for post in posts {
                     if let user = post.user {
                         print("✅ Post by: \(user.username ?? "No username")")
+                        print("📩 Comments: \(post.comments ?? [])")
                     } else {
                         print("❌ post.user is nil for post ID: \(post.objectId ?? "No ID")")
                     }
@@ -106,8 +168,35 @@ extension FeedViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.configure(with: posts[indexPath.row])
+        cell.delegate = self
         return cell
     }
 }
 
 extension FeedViewController: UITableViewDelegate { }
+
+extension FeedViewController: PostCellDelegate {
+    func didPostComment(for post: Post, comment: String) {
+        view.endEditing(true)
+        print("🔵 Delegate Function Triggered!") // ✅ First check if function is called
+            
+            var newComment = Comment()
+            newComment.text = comment
+            newComment.user = User.current
+            newComment.post = post
+
+            print("📤 Saving comment: \(comment) for Post ID: \(post.objectId ?? "No ID")")
+
+            newComment.save { [weak self] result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success:
+                        print("✅ Comment posted successfully!")
+                    case .failure(let error):
+                        print("❌ Error posting comment: \(error.localizedDescription)")
+                    }
+                }
+            }
+    }
+}
+

@@ -11,6 +11,11 @@ import AlamofireImage
 import CoreLocation
 import ParseSwift
 
+
+protocol PostCellDelegate: AnyObject {
+    func didPostComment(for post: Post, comment: String)
+}
+
 class PostCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
@@ -20,11 +25,18 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var blurView: UIVisualEffectView!
     
+    @IBOutlet weak var commentTextField: UITextField!
+    
+    @IBOutlet weak var postCommentButton: UIButton!
+    
+    weak var delegate: PostCellDelegate?
+    private var post: Post?
     
     private var imageDataRequest: DataRequest?
     
     func configure(with post: Post) {
         // TODO: Pt 1 - Configure Post Cell
+        self.post = post
         // Username
         if let user = post.user {
             usernameLabel.text = user.username
@@ -89,6 +101,28 @@ class PostCell: UITableViewCell {
             blurView.isHidden = false
         }
     }
+    
+    @IBAction func onPostCommentTapped(_ sender: UIButton) {
+        print("📩 Comment Button Pressed")  // ✅ Check if button press is registered
+            
+            guard let post = post else {
+                print("❌ No post found in PostCell!")
+                return
+            }
+            
+            guard let commentText = commentTextField.text, !commentText.isEmpty else {
+                print("❌ Comment text is empty!")
+                return
+            }
+            
+            print("📤 Sending Comment: \(commentText)")
+            
+            delegate?.didPostComment(for: post, comment: commentText)
+            
+            // ✅ Clear text field after posting
+            commentTextField.text = ""
+    }
+    
     
     override func prepareForReuse() {
         super.prepareForReuse()
