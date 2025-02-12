@@ -113,8 +113,8 @@ class FeedViewController: UIViewController {
 
         // Schedule notification for a fixed time (e.g., 8 PM)
         var dateComponents = DateComponents()
-        dateComponents.hour = 7  // Set hour (24-hour format)
-        dateComponents.minute = 37  // Set minute
+        dateComponents.hour = 11  // Set hour (24-hour format)
+        dateComponents.minute = 02  // Set minute
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
 

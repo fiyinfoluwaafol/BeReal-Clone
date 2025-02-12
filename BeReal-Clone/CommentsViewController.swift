@@ -29,6 +29,13 @@ class CommentsViewController: UIViewController {
         queryComments() // Fetch comments when view loads
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        queryComments()
+        tableView.reloadData()
+    }
+    
     // MARK: - Query Comments for the Post
     private func queryComments() {
         guard let postObjectId = post.objectId else {
