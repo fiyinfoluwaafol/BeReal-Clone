@@ -30,7 +30,8 @@ The following **additional** features are implemented:
 Here is a reminder on how to embed Loom videos on GitHub. Feel free to remove this reminder once you upload your README. 
 
 
-![Project3](https://github.com/user-attachments/assets/4bd9b6a8-ba9f-4e4f-95a9-c8e8fe60aacb)
+![UpdatedProject3](https://github.com/user-attachments/assets/3c8594da-0037-44b0-93aa-57e671c0ea4e)
+
 
 P.S. Please wait till end of GIF to see notification stretch feature implementation
 ## Notes
